@@ -1,0 +1,105 @@
+# Import
+
+from tkinter import *
+from PIL import Image, ImageTk
+
+ # Personnages
+
+class walter():
+    vie = 3
+    connaissances = 15
+
+class gus():
+    vie = 3
+    conniassance = 10
+    mechansté = 100
+
+# Premiere fen
+
+menu = Tk()
+frame_menu = Frame(menu, bg="#F5F5DC")
+
+# Fonctions bouttons
+
+def game_quit():
+    menu.destroy()  
+
+def starting():
+
+    # Nouvelle fenetre
+
+    menu.destroy()
+
+    game = Tk()
+    frame_game = Frame()
+
+    game.geometry("750x750")
+    game.title("Choisissez votre personnage!") 
+    game.minsize(750, 750)   
+    game.maxsize(750, 750)
+
+    # Fenetre choisir un personnage
+
+    def choisir_personnage():
+        game.destroy()
+
+        game2 = Tk()
+
+        game2.geometry("750x750")
+        game2.title("Jouer!") 
+
+        game2.minsize(750, 750)   
+        game2.maxsize(750, 750)
+
+    # Bouttons
+
+    Walter = Button(frame_game, text="Walter", font=("arial", 25), command=choisir_personnage)
+    Walter.pack()
+
+    for x in range (2):
+
+        coming_soon = Label(frame_game,text="Coming soon", font=("arial", 25))
+        coming_soon.pack()
+
+    # Ne pas toucher
+    frame_game.pack()
+    game.mainloop()
+
+# Parametre premiere fen
+
+menu.geometry("1200x750")
+menu.title("Menu")
+menu.config(bg="#F5F5DC")
+menu.minsize(1200, 750)   
+menu.maxsize(1200, 750)
+
+# Image menu
+
+photo_walter = Image.open("/Users/alexis/Documents/Python/breaking bad simulator/walter_menu-removebg-preview.png")
+photo_w_menu = ImageTk.PhotoImage(photo_walter)
+
+photo_gus = Image.open("/Users/alexis/Documents/Python/breaking bad simulator/gus-removebg.png")
+photo_w_gus = ImageTk.PhotoImage(photo_gus)
+
+img_gus = Label(frame_menu, image=photo_w_gus, bg="#F5F5DC")
+img_gus.pack(side="right")
+
+img_walter = Label(frame_menu, image=photo_w_menu, bg="#F5F5DC")
+img_walter.pack(side="left")
+
+# Texte menu
+
+titre = Label(frame_menu, text="Breaking bad simulator", font=("arial", 50), bg="#F5F5DC")
+titre.pack(side="top")
+
+# Boutton
+
+start = Button(frame_menu, text="Commencer", font=("arial", 25), command=starting, bg="#F5F5DC")
+start.pack(pady=100)
+Quit = Button(frame_menu,font=("arial",25),text="Quitter", command=game_quit, bg="#F5F5DC")
+Quit.pack()
+
+# Ne pas toucher
+
+frame_menu.pack()    
+menu.mainloop()
